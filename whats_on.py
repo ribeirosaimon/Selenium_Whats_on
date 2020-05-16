@@ -9,11 +9,12 @@ class whatsappBot:
     def __init__(self):
         self.grupos = ['Amor',]
         self.chrome = webdriver.Chrome()
+        print('Bom dia!, seu script começou a ser rodado as {}horas')
 
 
     def seeStatus(self):
         self.chrome.get(url)
-        time.sleep(10)
+        time.sleep(20)
         for grupo in self.grupos:
             grupo = self.chrome.find_element_by_xpath(f"//span[@title='{grupo}']")
             grupo.click()
@@ -43,9 +44,10 @@ class whatsappBot:
                     if secOff == 60:
                         minOff +=1
                         secOff=0
+                        print(f'{hrOff}h:{minOff}m:{secOff}s Offline')
                         if minOff == 60:
                             hrOff +=1
                             minOff=0
-                    print(f'{hrOff}h:{minOff}m:{secOff}s Offline')
+
 whats = whatsappBot()
 whats.seeStatus()
