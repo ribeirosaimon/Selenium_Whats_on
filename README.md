@@ -1,2 +1,2 @@
 # WhatsOnline
- Veja quanto tempo está online
+ Confira quanto tempo seu empregado está online no whatsapp!
