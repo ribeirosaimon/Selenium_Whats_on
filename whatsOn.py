@@ -4,13 +4,21 @@ from datetime import datetime
 
 url = 'https://web.whatsapp.com/'
 
-
+def calcTime(total_segs, printScreen):
+    horas = total_segs // 3600
+    dias = horas//86400
+    segs_restantes = total_segs % 3600
+    minutos = segs_restantes // 60
+    segs_restantes_final = segs_restantes % 60
+#    print('Tempo {printScreen}'horas,"horas,",minutos,"minutos e",segs_restantes_final,"segundos.")
+    print(f'Tempo {printScreen}   -   {horas}Horas  {minutos}Minutos {segs_restantes_final}Segundos')
 
 class whatsappBot:
     def __init__(self):
         self.grupos = ['Amor',]
         self.chrome = webdriver.Chrome()
-        print('Bom dia!, seu script começou a ser rodado as {}horas')
+        data = datetime.now()
+        print(f'Seu Script começou a ser rodado às {data}Horas')
 
 
     def seeStatus(self):
@@ -19,19 +27,26 @@ class whatsappBot:
         for grupo in self.grupos:
             grupo = self.chrome.find_element_by_xpath(f"//span[@title='{grupo}']")
             grupo.click()
-        online = False
+        timeOn=0
+        timeOf=0
         while True:
-            check_if_online = self.chrome.find_elements_by_xpath("//span[contains(@class, 'O90ur _3FXB1')]")[0].text
-            while check_if_online != 'online':
-                online=True
+            check = self.chrome.find_elements_by_xpath("//span[contains(@class, 'O90ur _3FXB1')]")[0].text
+            while check == 'online':
+                check_if_online = self.chrome.find_elements_by_xpath("//span[contains(@class, 'O90ur _3FXB1')]")[0].text
                 time.sleep(1)
-                print('True')
-            print('saiu do loop')
-            while check_if_online != 'online':
-                online=False
+                timeOn += 1
+                if check_if_online != 'online':
+                    calcTime(timeOn, 'OnLine')
+                    break
+
+            while check != 'online':
+                check_if_offline = self.chrome.find_elements_by_xpath("//span[contains(@class, 'O90ur _3FXB1')]")[0].text
                 time.sleep(1)
-                print('False')
-            print('saiu do loop')
+                timeOf += 1
+                if check_if_offline == 'online':
+                    calcTime(timeOf, 'OffLine')
+                    break
+
 
 
 
