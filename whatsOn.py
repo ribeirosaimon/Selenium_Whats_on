@@ -3,7 +3,7 @@ import time
 from datetime import datetime
 
 url = 'https://web.whatsapp.com/'
-choiceThePeople = ['Amor',]
+choiceThePeople = input('Digite o Nome exatamente igual ao whatsapp: ')
 
 def calcTime(total_segs, printScreen, calcTime=False):
     horas = total_segs // 3600
@@ -27,9 +27,9 @@ class whatsappBot:
     def seeStatus(self):
         self.chrome.get(url)
         time.sleep(20)
-        for grupo in self.grupos:
-            grupo = self.chrome.find_element_by_xpath(f"//span[@title='{grupo}']")
-            grupo.click()
+        grupo = self.chrome.find_element_by_xpath(f"//span[@title='{choiceThePeople}']")
+        grupo.click()
+        time.sleep(10)
         timeOn=0
         timeOf=0
 
@@ -38,8 +38,8 @@ class whatsappBot:
             lastTime = 0
             check = self.chrome.find_elements_by_xpath("//span[contains(@class, 'O90ur _3FXB1')]")[0].text
             while check == 'online':
-                check_if_online = self.chrome.find_elements_by_xpath("//span[contains(@class, 'O90ur _3FXB1')]")[0].text
                 time.sleep(1)
+                check_if_online = self.chrome.find_elements_by_xpath("//span[contains(@class, 'O90ur _3FXB1')]")[0].text
                 timeOn += 1
                 lastTime += 1
                 if check_if_online != 'online':
@@ -48,8 +48,8 @@ class whatsappBot:
                     break
 
             while check != 'online':
-                check_if_offline = self.chrome.find_elements_by_xpath("//span[contains(@class, 'O90ur _3FXB1')]")[0].text
                 time.sleep(1)
+                check_if_offline = self.chrome.find_elements_by_xpath("//span[contains(@class, 'O90ur _3FXB1')]")[0].text
                 timeOf += 1
                 lastTime += 1
                 if check_if_offline == 'online':
