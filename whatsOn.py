@@ -21,12 +21,14 @@ def calcTime(total_segs, printScreen, calcTime=False):
 
 def validation(check):
     if check == []:
-        check = 'Offline'
-    elif check != 'online':
-        check = 'offline'
-    else:
-        check = check[0].text
-    return check
+        textCheck = 'Offline'
+    elif check != []:
+        textCheck = check[0].text
+        if textCheck != 'online':
+            textCheck = 'offline'
+        else:
+            textCheck = 'online'
+    return textCheck
 
 
 class whatsappBot:
@@ -67,6 +69,8 @@ class whatsappBot:
                 check = validation(check_if_offline)
                 timeOf += 1
                 lastTime += 1
+                print(check)
+                print(timeOf)
                 if check == 'online':
                     calcTime(timeOf, 'OffLine')
                     calcTime(lastTime, 'OffLine', True)
