@@ -3,6 +3,7 @@ import time
 from datetime import datetime
 
 url = 'https://web.whatsapp.com/'
+choiceThePeople = ['Amor',]
 
 def calcTime(total_segs, printScreen):
     horas = total_segs // 3600
@@ -10,12 +11,11 @@ def calcTime(total_segs, printScreen):
     segs_restantes = total_segs % 3600
     minutos = segs_restantes // 60
     segs_restantes_final = segs_restantes % 60
-#    print('Tempo {printScreen}'horas,"horas,",minutos,"minutos e",segs_restantes_final,"segundos.")
     print(f'Tempo {printScreen}   -   {horas}Horas  {minutos}Minutos {segs_restantes_final}Segundos')
 
 class whatsappBot:
     def __init__(self):
-        self.grupos = ['Amor',]
+        self.grupos = choiceThePeople
         self.chrome = webdriver.Chrome()
         data = datetime.now()
         print(f'Seu Script começou a ser rodado às {data}Horas')
