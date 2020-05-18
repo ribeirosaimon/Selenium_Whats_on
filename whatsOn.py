@@ -65,7 +65,6 @@ class whatsappBot:
                 time.sleep(1)
                 check_if_offline = self.chrome.find_elements_by_xpath("//span[contains(@class, 'O90ur _3FXB1')]")
                 check = validation(check_if_offline)
-                print(check)
                 timeOf += 1
                 lastTime += 1
                 if check == 'online':
