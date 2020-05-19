@@ -52,7 +52,7 @@ class whatsappBot:
         while True:
             lastTime = 0
             check = self.chrome.find_elements_by_xpath("//span[contains(@class, 'O90ur _3FXB1')]")
-            validation(check)
+            check = validation(check)
             while check == 'online':
                 time.sleep(1)
                 check_if_online = self.chrome.find_elements_by_xpath("//span[contains(@class, 'O90ur _3FXB1')]")
@@ -69,11 +69,10 @@ class whatsappBot:
                 check = validation(check_if_offline)
                 timeOf += 1
                 lastTime += 1
-                print(check)
-                print(timeOf)
                 if check == 'online':
                     calcTime(timeOf, 'OffLine')
                     calcTime(lastTime, 'OffLine', True)
+                    check = 'online'
                     break
 
 
