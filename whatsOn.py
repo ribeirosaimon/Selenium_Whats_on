@@ -1,6 +1,7 @@
 from selenium import webdriver
 import time
 from datetime import datetime
+from selenium.webdriver.common.keys import Keys
 
 
 url = 'https://web.whatsapp.com/'
@@ -44,9 +45,8 @@ class whatsappBot:
         time.sleep(15)
         grupoSearch = self.chrome.find_element_by_xpath("//div[contains(@class, '_2S1VP copyable-text selectable-text')]")
         grupoSearch.send_keys(choiceThePeople)
+        grupoSearch.send_keys('\ue007')
         time.sleep(15)
-        grupo = self.chrome.find_element_by_xpath(f"//span[contains(@class, 'matched-text _3FXB1')]")
-        grupo.click()
         timeOn=0
         timeOf=0
 
