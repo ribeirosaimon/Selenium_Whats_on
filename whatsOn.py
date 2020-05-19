@@ -41,10 +41,12 @@ class whatsappBot:
 
     def seeStatus(self):
         self.chrome.get(url)
-        time.sleep(20)
-        grupo = self.chrome.find_element_by_xpath(f"//span[@title='{choiceThePeople}']")
+        time.sleep(15)
+        grupoSearch = self.chrome.find_element_by_xpath("//div[contains(@class, '_2S1VP copyable-text selectable-text')]")
+        grupoSearch.send_keys(choiceThePeople)
+        time.sleep(15)
+        grupo = self.chrome.find_element_by_xpath(f"//span[contains(@class, 'matched-text _3FXB1')]")
         grupo.click()
-        time.sleep(5)
         timeOn=0
         timeOf=0
 
